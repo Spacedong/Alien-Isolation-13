@@ -49,7 +49,7 @@
 	breath_type = null
 	poison_type = null
 
-	vision_flags = SEE_SELF|SEE_MOBS
+	vision_flags = SEE_SELF|SEE_MOBS|SEE_OBJS
 	darksight_addendum = 3 //fix it
 
 	has_organ = list(

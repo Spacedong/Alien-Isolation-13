@@ -137,37 +137,48 @@
 		src << "\red You cannot do that in your current state."
 		return
 
+	var/mob/target = null
+
+	for (var/mob/m in get_step(src, src.dir)) //let's allow instant headbiting of nested hosts
+		if (m.buckled && istype(m.buckled, /obj/structure/bed/nest))
+			target = m
+			goto _skippedgrab_
+
 	var/obj/item/weapon/grab/G = locate() in src
 	if(!G || !istype(G))
 		src << "\red You are not grabbing anyone."
-		return
-
-	if (isalien(src) && isalien(G.affecting))
 		return
 
 	if(G.state < GRAB_AGGRESSIVE)
 		src << "\red You must have an aggressive grab to gut your prey!"
 		return
 
+	target = G.affecting
+
+	_skippedgrab_
+
+	if (isalien(src) && isalien(target))
+		return
+
 	last_special = world.time + 50
 
 	visible_message("<span class='danger'>[src] extends their inner mouth...</span>", "<span class='alium'><i>You must stand still...</i></alium>")
 
-	var/original_g_affecting_loc = get_turf(G.affecting)
+	var/original_g_affecting_loc = get_turf(target)
 	var/original_src_loc = get_turf(src)
 
 	spawn (pick(40,60))
-		if (get_turf(G.affecting) == original_g_affecting_loc)
+		if (get_turf(target) == original_g_affecting_loc)
 			if (get_turf(src) == original_src_loc)
 				if (!src.incapacitated_any())
-					visible_message("<span class='danger'><b>\The [src]</b> sends its inner mouth straight through [G.affecting]'s [pick("skull", "brain")]!</span>")
+					visible_message("<span class='danger'><b>\The [src]</b> sends its inner mouth straight through [target]'s [pick("skull", "brain")]!</span>")
 
-					if(istype(G.affecting,/mob/living/carbon/human))
-						var/mob/living/carbon/human/H = G.affecting
+					if(istype(target,/mob/living/carbon/human))
+						var/mob/living/carbon/human/H = target
 						H.apply_damage(10000,BRUTE,"head")
 					else
-						var/mob/living/M = G.affecting
-						if(!istype(M)) return //wut
+						var/mob/living/M = target
+						if(!istype(M)) return //what the fuck
 						M.apply_damage(10000,BRUTE)
 
 

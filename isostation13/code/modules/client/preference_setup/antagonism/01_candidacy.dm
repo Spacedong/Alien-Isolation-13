@@ -28,6 +28,7 @@
 			. += "<b>Yes</b> / <a href='?src=\ref[src];del_special=[antag.role_type]'>No</a></br>"
 		else
 			. += "<a href='?src=\ref[src];add_special=[antag.role_type]'>Yes</a> / <b>No</b></br>"
+
 		. += "</td></tr>"
 
 	var/list/ghost_traps = get_ghost_traps()

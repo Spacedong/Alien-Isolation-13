@@ -590,11 +590,6 @@
 	if ( !AM || !usr || src==AM || !isturf(src.loc) )	//if there's no person pulling OR the person is pulling themself OR the object being pulled is inside something: abort!
 		return
 
-	var/obj/structure/closet/closet = AM
-	if (istype(closet,/obj/structure/closet) && isalien(src))//apparently using istype(AM) doesn't work?
-		src << "<span class='warning'>You cannot pull this object.</span>"
-		return
-
 	if (AM.anchored)
 		src << "<span class='warning'>It won't budge!</span>"
 		return

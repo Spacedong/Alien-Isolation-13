@@ -240,7 +240,8 @@
 			heardword = copytext(heardword,2)
 		if(copytext(heardword,-1) in punctuation)
 			heardword = copytext(heardword,1,lentext(heardword))
-		heard = "<span class = 'game_say'>...You hear something about...[heardword]</span>"
+		if (!findtext(heardword, "<span>"))//experiment by Cherkir
+			heard = "<span class = 'game_say'>...You hear something about...[heardword]</span>"
 
 	else
 		heard = "<span class = 'game_say'>...<i>You almost hear someone talking</i>...</span>"
