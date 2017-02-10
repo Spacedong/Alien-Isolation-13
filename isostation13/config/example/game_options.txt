@@ -44,9 +44,9 @@ REVIVAL_BRAIN_LIFE -1
 ## These values get directly added to values and totals in-game. To speed things up make the number negative, to slow things down, make the number positive.
 
 
-## These modify the run/walk speed of all mobs before the mob-specific modifiers are applied. 
-RUN_SPEED 2
-WALK_SPEED 5
+## These modify the run/walk speed of all mobs before the mob-specific modifiers are applied.
+RUN_SPEED 1
+WALK_SPEED 4
 
 
 ## The variables below affect the movement of specific mob types.
@@ -64,3 +64,14 @@ ANIMAL_DELAY 0
 
 ## Remove the # in front of this config option to have loyalty implants spawn by default on your server.
 #USE_LOYALTY_IMPLANTS
+
+## Comment for "normal" explosions, which ignore obstacles
+## Uncomment for explosions that react to doors and walls
+REACTIONARY_EXPLOSIONS
+
+## Default (3,7,14)
+#BOMBCAP 14
+## One 'step' up (5,10,20) (recommended if you enable REACTIONARY_EXPLOSIONS above)
+BOMBCAP 20
+## LagHell (7,14,28)
+#BOMBCAP 28

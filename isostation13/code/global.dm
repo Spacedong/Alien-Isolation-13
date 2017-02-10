@@ -180,3 +180,10 @@ var/max_explosion_range = 14
 var/global/obj/item/device/radio/intercom/global_announcer = new(null)
 
 var/list/station_departments = list("Command", "Medical", "Engineering", "Science", "Security", "Cargo", "Civilian")
+
+//This was a define, but I changed it to a variable so it can be changed in-game.(kept the all-caps definition because... code...) -Errorage
+var/MAX_EX_DEVESTATION_RANGE = 3
+var/MAX_EX_HEAVY_RANGE = 7
+var/MAX_EX_LIGHT_RANGE = 14
+var/MAX_EX_FLASH_RANGE = 14
+var/MAX_EX_FLAME_RANGE = 14

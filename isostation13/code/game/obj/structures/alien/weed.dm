@@ -7,15 +7,14 @@
 	anchored = 1
 	layer = 3.1
 
-	New(nloc, state)
-		..()
-		loc = nloc
-		icon_state = state
-		set_light(3,3, rgb(100,50,100))
+/obj/structure/alien/weed/New(nloc, state)
+	..()
+	loc = nloc
+	icon_state = state
+	set_light(3,3, rgb(100,50,100))
 
-	Del()
-		..()
-
+/obj/structure/alien/weed/Destroy()
+	..()
 
 /obj/structure/alien/weed/ex_act(severity)
 	switch(severity)

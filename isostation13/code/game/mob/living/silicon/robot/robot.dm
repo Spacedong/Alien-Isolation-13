@@ -228,7 +228,11 @@
 	if(connected_ai)
 		connected_ai.connected_robots -= src
 	qdel(wires)
+	qdel(module)
+	module = null
 	wires = null
+	cell = null
+	camera = null
 	return ..()
 
 /mob/living/silicon/robot/proc/set_module_sprites(var/list/new_sprites)

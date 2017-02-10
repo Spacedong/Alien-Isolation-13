@@ -20,14 +20,15 @@
 /datum/controller/process/machinery/proc/internal_process_machinery()
 	for(last_object in machines)
 		var/obj/machinery/M = last_object
-		if(M && !M.gcDestroyed)
+		if(istype(M) && isnull(M.gcDestroyed))
 			if(M.process() == PROCESS_KILL)
 				//M.inMachineList = 0 We don't use this debugging function
-				machines.Remove(M)
-				continue
-
+				machines -= M
 			if(M && M.use_power)
 				M.auto_use_power()
+		else
+			catchBadType(M)
+			machines -= M
 
 		SCHECK
 
@@ -37,9 +38,9 @@
 		if(istype(powerNetwork) && isnull(powerNetwork.gcDestroyed))
 			powerNetwork.reset()
 			SCHECK
-			continue
-
-		powernets.Remove(powerNetwork)
+		else
+			catchBadType(powerNetwork)
+			powernets -= powerNetwork
 
 /datum/controller/process/machinery/proc/internal_process_power_drain()
 	// Currently only used by powersinks. These items get priority processed before machinery
@@ -55,9 +56,9 @@
 		if(istype(pipeNetwork) && isnull(pipeNetwork.gcDestroyed))
 			pipeNetwork.process()
 			SCHECK
-			continue
-
-		pipe_networks.Remove(pipeNetwork)
+		else
+			catchBadType(pipeNetwork)
+			pipe_networks -= pipeNetwork
 
 /datum/controller/process/machinery/statProcess()
 	..()

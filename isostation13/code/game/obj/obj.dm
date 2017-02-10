@@ -34,6 +34,7 @@
 	return FALSE
 
 /obj/Destroy()
+	machines -= src
 	processing_objects -= src
 	return ..()
 

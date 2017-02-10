@@ -69,13 +69,14 @@
 			return 0
 	return
 
-/obj/machinery/cablelayer/proc/use_cable(amount)
+/obj/machinery/cablelayer/proc/use_cable(amount) //TODO: Set mech equipment under /obj/item/mecha_parts/mecha_equipment
 	if(!cable || cable.amount<1)
 		visible_message("A red light flashes on \the [src].")
 		return
+	if(cable.amount < amount)
+		visible_message("Not enough cable to finish the task.")
+		return
 	cable.use(amount)
-	if(deleted(cable)) 
-		cable = null
 	return 1
 
 /obj/machinery/cablelayer/proc/reset()

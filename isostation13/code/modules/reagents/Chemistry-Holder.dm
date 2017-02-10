@@ -84,6 +84,7 @@
 		R.holder = null
 	if(my_atom)
 		my_atom.reagents = null
+	qdel(src)
 
 /datum/reagents/proc/handle_reactions()
 	if(chemistryProcess)

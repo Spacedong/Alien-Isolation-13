@@ -164,12 +164,7 @@
 	valve_open = 1
 
 /obj/item/device/transfer_valve/proc/split_gases()
-	if(!valve_open)
-		return
-
-	valve_open = 0
-
-	if(deleted(tank_one) || deleted(tank_two))
+	if(!valve_open || !tank_one || !tank_two)
 		return
 
 	var/ratio1 = tank_one.air_contents.volume/tank_two.air_contents.volume

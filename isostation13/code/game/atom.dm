@@ -20,6 +20,9 @@
 	///Chemistry.
 	var/datum/reagents/reagents = null
 
+	//Value used to increment ex_act() if reactionary_explosions is on
+	var/explosion_block = 0
+
 	//var/chem_is_open_container = 0
 	// replaced by OPENCONTAINER flags and atom/proc/is_open_container()
 	///Chemistry.

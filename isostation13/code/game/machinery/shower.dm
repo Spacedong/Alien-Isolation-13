@@ -81,7 +81,7 @@
 /obj/effect/shower/update_icon()
 	overlays.Cut()
 	if(mymist)
-		del(mymist)
+		qdel(mymist)
 
 	if(master.on)
 		overlays += image('icons/obj/watercloset.dmi', src, "water", MOB_LAYER + 1, dir)
@@ -101,7 +101,7 @@
 		spawn(150)
 			if(src && !master.on)
 				ismist = 0
-				del(mymist)
+				qdel(mymist)
 				qdel(src)
 
 //Yes, showers are super powerful as far as washing goes.
@@ -187,7 +187,7 @@
 		loc.clean_blood()
 		for(var/obj/effect/E in tile)
 			if(istype(E,/obj/effect/rune) || istype(E,/obj/effect/decal/cleanable) || istype(E,/obj/effect/overlay))
-				del(E)
+				qdel(E)
 
 /obj/effect/shower/process()
 	if(!master.on) return

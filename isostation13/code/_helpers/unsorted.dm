@@ -1334,9 +1334,9 @@ var/mob/dview/dview_mob = new
 	else
 		living_mob_list -= src
 
-// call to generate a stack trace and print to runtime logs
+/*// call to generate a stack trace and print to runtime logs
 /proc/crash_with(msg)
-	CRASH(msg)
+	CRASH(msg)*/
 
 /proc/CheckFace(var/atom/Obj1, var/atom/Obj2)
 	var/CurrentDir = get_dir(Obj1, Obj2)
@@ -1346,4 +1346,15 @@ var/mob/dview/dview_mob = new
 	else
 		return 0
 
-
+//Key thing that stops lag. Cornerstone of performance in ss13, Just sitting here, in unsorted.dm.
+/proc/stoplag()
+	. = 1
+	sleep(world.tick_lag)
+	if(world.tick_usage > TICK_LIMIT_TO_RUN) //woke up, still not enough tick, sleep for more.
+		. += 2
+		sleep(world.tick_lag*2)
+		if(world.tick_usage > TICK_LIMIT_TO_RUN) //woke up, STILL not enough tick, sleep for more.
+			. += 4
+			sleep(world.tick_lag*4)
+			//you might be thinking of adding more steps to this, or making it use a loop and a counter var
+			//	not worth it.

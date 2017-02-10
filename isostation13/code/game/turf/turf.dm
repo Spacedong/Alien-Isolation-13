@@ -24,6 +24,8 @@
 	var/dynamic_lighting = 1    // Does the turf use dynamic lighting?
 
 	var/list/decals
+	
+	var/intact = 1
 
 /turf/New()
 	..()
