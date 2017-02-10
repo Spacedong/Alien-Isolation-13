@@ -1,6 +1,9 @@
 //simplified MC that is designed to fail when procs 'break'. When it fails it's just replaced with a new one.
 //It ensures master_controller.process() is never doubled up by killing the MC (hence terminating any of its sleeping procs)
 //WIP, needs lots of work still
+/datum/controller
+	// Dummy object to let us click it to debug while in the stat panel
+	var/obj/effect/statclick/debug/statclick
 
 var/global/datum/controller/game_controller/master_controller //Set in world.New()
 

@@ -312,7 +312,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	stop_following()
 	usr.forceMove(pick(L))
 
-/mob/observer/ghost/verb/follow(input in ticker.basic_mob_pool.culled_mobs())
+/mob/observer/ghost/verb/follow(input in getmobs())
 	set category = "Ghost"
 	set name = "Follow" // "Haunt"
 	set desc = "Follow and haunt a mob."
@@ -358,7 +358,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		return FALSE
 	return (T && T.holy) && (invisibility <= SEE_INVISIBLE_LIVING || (mind in cult.current_antagonists))
 
-/mob/observer/ghost/verb/jumptomob(target in ticker.basic_mob_pool.culled_mobs()) //Moves the ghost instead of just changing the ghosts's eye -Nodrak
+/mob/observer/ghost/verb/jumptomob(target in getmobs()) //Moves the ghost instead of just changing the ghosts's eye -Nodrak
 	set category = "Ghost"
 	set name = "Jump to Mob"
 	set desc = "Teleport to a mob"

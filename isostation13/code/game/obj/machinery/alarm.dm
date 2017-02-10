@@ -283,6 +283,8 @@
 
 
 /obj/machinery/alarm/proc/master_is_operating()
+	if(!alarm_area)
+		alarm_area = areaMaster
 	return alarm_area.master_air_alarm && !(alarm_area.master_air_alarm.stat & (NOPOWER|BROKEN))
 
 
@@ -352,8 +354,12 @@
 		register_env_machine(id_tag, dev_type)
 	if(dev_type == "AScr")
 		alarm_area.air_scrub_info[id_tag] = signal.data
+		got_update(1)
 	else if(dev_type == "AVP")
 		alarm_area.air_vent_info[id_tag] = signal.data
+		got_update(1)
+	if(got_update && waiting_on_device==id_tag)
+		waiting_on_device=null
 
 /obj/machinery/alarm/proc/register_env_machine(var/m_id, var/device_type)
 	var/new_name

@@ -30,11 +30,6 @@
 	expansions.Cut()
 	return ..()
 
-/obj/ResetVars(var/list/exclude = list())
-	exclude += "expansions"
-	..(exclude)
-	//expansions = list()
-
 /obj/proc/set_expansion(var/type, var/instance)
 	if(expansions[type])
 		qdel(expansions[type])

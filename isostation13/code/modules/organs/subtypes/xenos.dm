@@ -28,9 +28,14 @@
 	max_plasma = 250
 
 /obj/item/organ/xenos/plasmavessel/hunter
-	name = "tiny plasma vessel"
+	name = "small plasma vessel"
 	stored_plasma = 100
 	max_plasma = 150
+
+/obj/item/organ/xenos/plasmavessel/larva
+	name = "tiny xeno plasma vessel"
+	icon_state = "plasma_tiny"
+	max_plasma = 100
 
 /obj/item/organ/xenos/acidgland
 	name = "acid gland"

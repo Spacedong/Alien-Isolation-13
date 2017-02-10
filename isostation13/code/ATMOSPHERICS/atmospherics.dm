@@ -42,6 +42,11 @@ Pipelines + Other Objects -> Pipe network
 		pipe_color = null
 	..()
 
+/obj/machinery/atmospherics/Destroy()
+	for(var/mob/living/L in src)
+		L.forceMove(get_turf(src))
+	return ..()
+
 /obj/machinery/atmospherics/attackby(atom/A, mob/user as mob)
 	if(istype(A, /obj/item/device/pipe_painter))
 		return

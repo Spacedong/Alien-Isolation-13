@@ -35,7 +35,8 @@
 		return TRUE
 	if (src && usr && usr.machine == src)
 		usr << browse(null, "window=stack")
-	return ..()
+	..()
+	return QDEL_HINT_HARDDEL_NOW // because qdel'd stacks act strange for cyborgs
 
 /obj/item/stack/examine(mob/user)
 	if(..(user, 1))

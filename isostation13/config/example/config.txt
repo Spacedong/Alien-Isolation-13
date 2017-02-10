@@ -35,7 +35,7 @@ JOBS_HAVE_MINIMAL_ACCESS
 ## log OOC channel
 LOG_OOC
 
-## log client Say 
+## log client Say
 LOG_SAY
 
 ## log admin actions
@@ -100,7 +100,7 @@ MOD_JOB_TEMPBAN_MAX 1440
 
 
 ## probablities for game modes chosen in "secret" and "random" modes
-## 
+##
 ## default probablity is 1, increase to make that mode more likely to be picked
 ## set to 0 to disable that mode
 PROBABILITY XENO 10000
@@ -221,14 +221,14 @@ GUEST_BAN
 ##Remove the # mark infront of this to forbid admins from posssessing the singularity.
 #FORBID_SINGULO_POSSESSION
 
-## Remove the # to show a popup 'reply to' window to every non-admin that recieves an adminPM. 
+## Remove the # to show a popup 'reply to' window to every non-admin that recieves an adminPM.
 ## The intention is to make adminPMs more visible. (although I fnd popups annoying so this defaults to off)
 #POPUP_ADMIN_PM
 
 ## Remove the # to allow special 'Easter-egg' events on special holidays such as seasonal holidays and stuff like 'Talk Like a Pirate Day' :3 YAARRR
 ALLOW_HOLIDAYS
 ##Defines the ticklag for the world.  0.9 is the normal one, 0.5 is smoother.
-TICKLAG 0.9
+TICKLAG 0.5
 
 ## Defines if Tick Compensation is used.  It results in a minor slowdown of movement of all mobs, but attempts to result in a level movement speed across all ticks.  Recommended if tickrate is lowered.
 TICKCOMP 0
@@ -300,10 +300,10 @@ CHARACTER_SLOTS 10
 ## Uncomment to use overmap system for zlevel travel
 #USE_OVERMAP
 
-## Defines which Z-levels the station exists on. 
+## Defines which Z-levels the station exists on.
 STATION_LEVELS 1
 
-## Can external windows and walls be destroyed? 
+## Can external windows and walls be destroyed?
 IMPENETRABLE_STATION_EXTERIOR
 
 ## Defines which Z-levels are used for admin functionality, such as Central Command and the Syndicate Shuttle
@@ -389,7 +389,7 @@ STARLIGHT 0
 ## Uncomment to override default brain health.
 #DEFAULT_BRAIN_HEALTH 400
 
-## Default language prefix keys, separated with spaces. Only single character keys are supported. If unset, defaults to , # and - 
+## Default language prefix keys, separated with spaces. Only single character keys are supported. If unset, defaults to , # and -
 # DEFAULT_LANGUAGE_PREFIXES , # -
 
 ## A ; separated list of lobby screens to randomly pick from. The listed screens must exist as icon states in '/icons/misc/title.dmi'.

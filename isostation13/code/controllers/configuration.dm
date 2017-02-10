@@ -50,8 +50,8 @@ var/list/gamemode_cache = list()
 	var/continous_rounds = 0			// Gamemodes which end instantly will instead keep on going until the round ends by escape shuttle or nuke.
 	var/allow_Metadata = 0				// Metadata is supported.
 	var/popup_admin_pm = 0				//adminPMs to non-admins show in a pop-up 'reply' window when set to 1.
-	var/Ticklag = 0.2
-	var/Tickcomp = 1
+	var/Ticklag = 0.9
+	var/Tickcomp = 0
 	var/socket_talk	= 0					// use socket_talk to communicate with other processes
 	var/list/resource_urls = null
 	var/antag_hud_allowed = 0			// Ghosts can turn on Antagovision to see a HUD of who is the bad guys this round.
@@ -78,6 +78,8 @@ var/list/gamemode_cache = list()
 	var/ToRban = 0
 	var/automute_on = 0					//enables automuting/spam prevention
 	var/jobs_have_minimal_access = 0	//determines whether jobs use minimal access or expanded access.
+
+	var/reactionary_explosions = 0 //If we use reactionary explosions, explosions that react to walls and doors
 
 	var/cult_ghostwriter = 1               //Allows ghosts to write in blood in cult rounds...
 	var/cult_ghostwriter_req_cultists = 10 //...so long as this many cultists are active.
@@ -777,10 +779,25 @@ var/list/gamemode_cache = list()
 					config.slime_delay = value
 				if("animal_delay")
 					config.animal_delay = value
+				if("bombcap")
+					var/BombCap = text2num(value)
+					if(!BombCap)
+						continue
+					if(BombCap < 4)
+						BombCap = 4
+					if(BombCap > 128)
+						BombCap = 128
 
+					MAX_EX_DEVESTATION_RANGE = round(BombCap/4)
+					MAX_EX_HEAVY_RANGE = round(BombCap/2)
+					MAX_EX_LIGHT_RANGE = BombCap
+					MAX_EX_FLASH_RANGE = BombCap
+					MAX_EX_FLAME_RANGE = BombCap
 
 				if("use_loyalty_implants")
 					config.use_loyalty_implants = 1
+				if("reactionary_explosions")
+					config.reactionary_explosions	= 1
 
 				else
 					log_misc("Unknown setting in configuration: '[name]'")

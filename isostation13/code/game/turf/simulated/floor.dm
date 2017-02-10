@@ -24,6 +24,8 @@
 	var/lava = 0
 	var/overrided_icon_state
 
+	intact = 0
+
 /turf/simulated/floor/is_plating()
 	return !flooring
 
@@ -71,3 +73,8 @@
 /turf/simulated/floor/levelupdate()
 	for(var/obj/O in src)
 		O.hide(O.hides_under_flooring() && src.flooring)
+
+/turf/simulated/floor/is_shielded()
+	for(var/obj/structure/A in contents)
+		if(A.level == 3)
+			return 1

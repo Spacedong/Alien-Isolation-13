@@ -17,15 +17,13 @@
 				move_delay += 1+config.run_speed
 				if (!isalien(mob) && prob(1)) mob.make_sound(SOUND_MEDIUM)
 			if("walk")
-				move_delay += 7+config.walk_speed
-	else
-		move_delay += ((1+config.run_speed)/5)
+				move_delay += 1+config.walk_speed
+		move_delay += mob.movement_delay()
 
-	move_delay += mob.movement_delay()
-
-	if (move_delay == world.time) //failsafe to prevent infinite loops
-
-		move_delay += ((1+config.run_speed))/5
+		if(config.Tickcomp)
+			move_delay -= 1.3
+			var/tickcomp = ((1/(world.tick_lag))*1.3)
+			move_delay = move_delay + tickcomp
 
 	//putting alien code stuff down here which may make movement code a lot faster
 

@@ -126,7 +126,7 @@
 			M << "<span class='danger'>[src] blows up in your face.</span>"
 			M.drop_item()
 			Fire(get_turf(M))
-			del(src)
+			qdel(src)
 			return
 
 	playsound(user, fire_sound, 70, 1)
@@ -192,7 +192,7 @@
 	qdel(src)
 
 
-/obj/structure/table/hatton_act()// ядекюрэ опнбепйс хг йюйнцн люрепхюкю ядекюм ярнк ???
+/obj/structure/table/hatton_act()// О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫ ???
 	new /obj/item/stack/material/steel(src.loc)
 	qdel(src)
 
@@ -229,6 +229,3 @@
 
 /obj/structure/cable/hatton_act()
 	return
-
-
-

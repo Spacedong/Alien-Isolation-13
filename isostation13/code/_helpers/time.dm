@@ -13,6 +13,12 @@
 #define TimeOfGame (get_game_time())
 #define TimeOfTick (world.tick_usage*0.01*world.tick_lag)
 
+#define TICK_LIMIT_RUNNING 90
+#define TICK_LIMIT_TO_RUN 85
+
+#define TICK_CHECK ( world.tick_usage > TICK_LIMIT_RUNNING ? stoplag() : 0 )
+#define CHECK_TICK if(world.tick_usage > TICK_LIMIT_RUNNING)  stoplag()
+
 /proc/get_game_time()
 	var/global/time_offset = 0
 	var/global/last_time = 0
@@ -93,8 +99,3 @@ var/round_start_time = 0
 	last_roundduration2text = "[hours]:[mins]"
 	next_duration_update = world.time + 1 MINUTES
 	return last_roundduration2text
-
-//Can be useful for things dependent on process timing
-/proc/process_schedule_interval(var/process_name)
-	var/datum/controller/process/process = processScheduler.getProcess(process_name)
-	return process.schedule_interval

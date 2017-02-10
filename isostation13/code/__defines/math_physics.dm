@@ -24,8 +24,10 @@
 
 #define INFINITY	1.#INF
 
-#define TICKS_IN_DAY 		24*60*60*10
+#define TICKS_IN_DAY 		864000
 #define TICKS_IN_SECOND 	10
 
 #define SIMPLE_SIGN(X) ((X) < 0 ? -1 : 1)
 #define SIGN(X)        ((X) ? SIMPLE_SIGN(X) : 0)
+
+#define hypotenuse(Ax, Ay, Bx, By)	(sqrt(((Ax) - (Bx))**2 + ((Ay) - (By))**2))

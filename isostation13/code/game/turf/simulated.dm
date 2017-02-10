@@ -14,32 +14,32 @@
 	var/max_fire_temperature_sustained = 0 //The max temperature of the fire which it was subjected to
 	var/dirt = 0
 
-	var/datum/scheduled_task/unwet_task
+/turf/simulated/New()
+	..()
+	levelupdate()
 
-// This is not great.
-/turf/simulated/proc/wet_floor(var/wet_val = 1)
-	if(wet_val < wet)
+// TODO: Work on lube
+/turf/simulated/proc/wet_floor(wet_setting = TURF_WET_WATER)
+	if(wet >= wet_setting)
 		return
-
-	if(!wet)
-		wet = wet_val
-		wet_overlay = image('icons/effects/water.dmi',src,"wet_floor")
+	wet = wet_setting
+	if(wet_setting != TURF_DRY)
+		if(wet_overlay)
+			overlays -= wet_overlay
+			wet_overlay = null
+		wet_overlay = image('icons/effects/water.dmi', src, "wet_floor_static")
 		overlays += wet_overlay
 
-	if(unwet_task)
-		unwet_task.trigger_task_in(8 SECONDS)
-	else
-		unwet_task = schedule_task_in(8 SECONDS)
-		task_triggered_event.register(unwet_task, src, /turf/simulated/proc/task_unwet_floor)
+	spawn(rand(790, 820)) // Purely so for visual effect
+		if(!istype(src, /turf/simulated)) //Because turfs don't get deleted, they change, adapt, transform, evolve and deform. they are one and they are all.
+			return
 
-/turf/simulated/proc/task_unwet_floor(var/triggered_task)
-	if(triggered_task == unwet_task)
-		unwet_task = null
-		unwet_floor(TRUE)
-
-/turf/simulated/proc/unwet_floor(var/check_very_wet)
-	if(check_very_wet && wet >= 2)
+/turf/simulated/proc/unwet_floor(wet_setting = TURF_WET_WATER)
+	if(wet > wet_setting)
 		return
+	wet = TURF_DRY
+	if(wet_overlay)
+		overlays -= wet_overlay
 
 	wet = 0
 	if(wet_overlay)
@@ -56,11 +56,6 @@
 	if(istype(loc, /area/chapel))
 		holy = 1
 	levelupdate()
-
-/turf/simulated/Destroy()
-	qdel(unwet_task)
-	unwet_task = null
-	return ..()
 
 /turf/simulated/proc/initialize()
 	return
@@ -80,6 +75,7 @@
 		dirtoverlay.alpha = min((dirt - 50) * 5, 255)
 
 /turf/simulated/Entered(atom/A, atom/OL)
+	..()
 	if(movement_disabled && usr.ckey != movement_disabled_exception)
 		usr << "<span class='danger'>Movement is admin-disabled.</span>" //This is to identify lag problems
 		return
@@ -123,34 +119,19 @@
 
 				bloodDNA = null
 
-		if(src.wet)
-
-			if(M.buckled || (src.wet == 1 && M.m_intent == "walk"))
-				return
-
-			var/slip_dist = 1
-			var/slip_stun = 6
-			var/floor_type = "wet"
-
 			switch(src.wet)
-				if(2) // Lube
-					floor_type = "slippery"
-					slip_dist = 4
-					slip_stun = 10
-				if(3) // Ice
-					floor_type = "icy"
-					slip_stun = 4
+				if(TURF_WET_WATER)
+					if(!(M.slip("wet floor", 4, 2, 0, 1)))
+						M.inertia_dir = 0
+						return
 
-			if(M.slip("the [floor_type] floor",slip_stun))
-				for(var/i = 0;i<slip_dist;i++)
-					step(M, M.dir)
-					sleep(1)
-			else
-				M.inertia_dir = 0
-		else
-			M.inertia_dir = 0
+				if(TURF_WET_LUBE) //lube
+					M.slip("floor", 0, 5, 3, 0, 1)
 
-	..()
+
+				if(TURF_WET_ICE) // Ice
+					if(!(prob(30) && M.slip("icy floor", 4, 2, 1, 1)))
+						M.inertia_dir = 0
 
 //returns 1 if made bloody, returns 0 otherwise
 /turf/simulated/add_blood(mob/living/carbon/human/M as mob)
@@ -186,3 +167,5 @@
 		coil.turf_place(src, user)
 		return
 	return ..()
+
+/turf/simulated/proc/is_shielded()

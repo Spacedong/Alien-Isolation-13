@@ -1,5 +1,7 @@
 /turf/simulated/wall/r_wall
 	icon_state = "rgeneric"
+	explosion_block = 2
+
 /turf/simulated/wall/r_wall/New(var/newloc)
 	..(newloc, "plasteel","plasteel") //3strong
 

@@ -187,7 +187,7 @@
 /mob/living/carbon/human/proc/implant(var/implant_type = /obj/item/weapon/implant/loyalty)
 	var/obj/item/weapon/implant/L = new implant_type(src)
 	if(!istype(L, /obj/item/weapon/implant))
-		del(L)
+		qdel(L)
 		return FALSE
 
 // TODO: replace with    L.implanted(src, "head")

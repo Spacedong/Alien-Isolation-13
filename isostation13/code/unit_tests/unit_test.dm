@@ -86,8 +86,8 @@ proc/initialize_unit_tests()
 	//
 
 	if(!ticker)
-		crash_with("No Ticker")
-		del(world)
+		testing("No Ticker")
+		qdel(world)
 
 	var/said_msg = 0
 	while(ticker.pregame_timeleft && ticker.pregame_timeleft > 160) 	// Make sure the initial startup is complete.
@@ -111,7 +111,7 @@ proc/initialize_unit_tests()
 
 	var/list/test_datums = get_test_datums()
 	run_unit_tests(test_datums)
-	del(world)
+	qdel(world)
 
 /proc/run_unit_tests(var/list/test_datums, var/skip_disabled_tests = TRUE)
 	if(currently_running_tests)

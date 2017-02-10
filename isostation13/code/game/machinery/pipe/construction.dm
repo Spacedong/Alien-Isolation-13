@@ -451,8 +451,6 @@ Buildable meters
 			return 1
 	// no conflicts found
 
-	var/pipefailtext = "<span class='warning'>There's nothing to connect this pipe section to!</span>" //(with how the pipe code works, at least one end needs to be connected to something, otherwise the game deletes the segment)"
-
 	//TODO: Move all of this stuff into the various pipe constructors.
 	switch(pipe_type)
 		if(PIPE_SIMPLE_STRAIGHT, PIPE_SIMPLE_BENT)
@@ -463,9 +461,6 @@ Buildable meters
 			var/turf/T = P.loc
 			P.level = !T.is_plating() ? 2 : 1
 			P.initialize()
-			if (deleted(P))
-				usr << pipefailtext
-				return 1
 			P.build_network()
 			if (P.node1)
 				P.node1.initialize()
@@ -482,9 +477,6 @@ Buildable meters
 			var/turf/T = P.loc
 			P.level = !T.is_plating() ? 2 : 1
 			P.initialize()
-			if (deleted(P))
-				usr << pipefailtext
-				return 1
 			P.build_network()
 			if (P.node1)
 				P.node1.initialize()
@@ -501,9 +493,6 @@ Buildable meters
 			var/turf/T = P.loc
 			P.level = !T.is_plating() ? 2 : 1
 			P.initialize()
-			if (deleted(P))
-				usr << pipefailtext
-				return 1
 			P.build_network()
 			if (P.node1)
 				P.node1.initialize()
@@ -520,9 +509,6 @@ Buildable meters
 			var/turf/T = P.loc
 			P.level = !T.is_plating() ? 2 : 1
 			P.initialize()
-			if (deleted(P))
-				usr << pipefailtext
-				return 1
 			P.build_network()
 			if (P.node1)
 				P.node1.initialize()
@@ -537,9 +523,6 @@ Buildable meters
 			P.initialize_directions = pipe_dir //this var it's used to know if the pipe is bent or not
 			P.initialize_directions_he = pipe_dir
 			P.initialize()
-			if (deleted(P))
-				usr << pipefailtext
-				return 1
 			P.build_network()
 			if (P.node1)
 				P.node1.initialize()
@@ -572,9 +555,6 @@ Buildable meters
 			var/turf/T = M.loc
 			M.level = !T.is_plating() ? 2 : 1
 			M.initialize()
-			if (deleted(M))
-				usr << pipefailtext
-				return 1
 			M.build_network()
 			if (M.node1)
 				M.node1.initialize()
@@ -641,9 +621,6 @@ Buildable meters
 			var/turf/T = M.loc
 			M.level = !T.is_plating() ? 2 : 1
 			M.initialize()
-			if (deleted(M))
-				usr << pipefailtext
-				return 1
 			M.build_network()
 			if (M.node1)
 				M.node1.initialize()
@@ -718,9 +695,6 @@ Buildable meters
 			P.initialize_directions = src.get_pdir()
 			P.initialize_directions_he = src.get_hdir()
 			P.initialize()
-			if (deleted(P))
-				usr << pipefailtext //"There's nothing to connect this pipe to! (with how the pipe code works, at least one end needs to be connected to something, otherwise the game deletes the segment)"
-				return 1
 			P.build_network()
 			if (P.node1)
 				P.node1.initialize()
@@ -901,9 +875,6 @@ Buildable meters
 			var/turf/T = P.loc
 			P.level = !T.is_plating() ? 2 : 1
 			P.initialize()
-			if (deleted(P))
-				usr << pipefailtext
-				return 1
 			P.build_network()
 			if (P.node1)
 				P.node1.initialize()

@@ -11,6 +11,6 @@
 /mob/living/carbon/alien/larva/New()
 	..()
 	add_language("Xenomorph") //Bonus language.
-	internal_organs |= new /obj/item/organ/xenos/hivenode(src)
+	internal_organs += new /obj/item/organ/xenos/plasmavessel/larva
 	create_reagents(100)
 	alien_message("[src] has been born at [get_area(src)]!")

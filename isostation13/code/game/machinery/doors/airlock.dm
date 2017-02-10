@@ -30,6 +30,7 @@
 	var/hasShocked = 0 //Prevents multiple shocks from happening
 	var/secured_wires = 0
 	var/datum/wires/airlock/wires = null
+	explosion_block = 1
 
 	var/open_sound_powered = 'sound/machines/airlock_open.ogg'
 	var/close_sound = 'sound/machines/airlock_close.ogg'
@@ -110,6 +111,7 @@
 	opacity = 1
 	secured_wires = 1
 	assembly_type = /obj/structure/door_assembly/door_assembly_highsecurity //Until somebody makes better sprites.
+	explosion_block = 2
 
 /obj/machinery/door/airlock/vault/bolted
 	icon_state = "door_locked"
@@ -360,6 +362,7 @@
 	explosion_resistance = 20
 	secured_wires = 1
 	assembly_type = /obj/structure/door_assembly/door_assembly_highsecurity
+	explosion_block = 2
 
 /*
 About the new airlock wires panel:
@@ -1151,4 +1154,3 @@ About the new airlock wires panel:
 		src.open()
 		src.lock()
 	return
-

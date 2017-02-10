@@ -1,22 +1,30 @@
+var/global/datum/controller/process/mob/mob_master
+
 /datum/controller/process/mob
-	var/tmp/datum/updateQueue/updateQueueInstance
+	var/current_cycle
 
 /datum/controller/process/mob/setup()
 	name = "mob"
 	schedule_interval = 20 // every 2 seconds
 	start_delay = 16
+	world << "Mob ticker starting up."
+	if(mob_master)
+		qdel(mob_master) //only one mob master
+	mob_master = src
 
 /datum/controller/process/mob/started()
 	..()
 	if(!mob_list)
 		mob_list = list()
 
+/datum/controller/process/mob/statProcess()
+	..()
+	stat(null, "[mob_list.len] mobs")
+
 /datum/controller/process/mob/doWork()
 	for(last_object in mob_list)
 		var/mob/M = last_object
-		if (M.loc == null)
-			continue
-		if(isnull(M.gcDestroyed))
+		if(istype(M) && isnull(M.gcDestroyed))
 			try
 				M.Life()
 			catch(var/exception/e)
@@ -25,7 +33,4 @@
 		else
 			catchBadType(M)
 			mob_list -= M
-
-/datum/controller/process/mob/statProcess()
-	..()
-	stat(null, "[mob_list.len] mobs")
+	current_cycle++

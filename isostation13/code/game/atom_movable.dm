@@ -25,7 +25,7 @@
 /atom/movable/Del()
 	if(isnull(gcDestroyed) && loc)
 		testing("GC: -- [type] was deleted via del() rather than qdel() --")
-		crash_with("GC: -- [type] was deleted via del() rather than qdel() --") // stick a stack trace in the runtime logs
+		//crash_with("GC: -- [type] was deleted via del() rather than qdel() --") // stick a stack trace in the runtime logs
 //	else if(isnull(gcDestroyed))
 //		testing("GC: [type] was deleted via GC without qdel()") //Not really a huge issue but from now on, please qdel()
 //	else
@@ -44,7 +44,7 @@
 
 /atom/movable/proc/initialize()
 	if(!isnull(gcDestroyed))
-		crash_with("GC: -- [type] had initialize() called after qdel() --")
+		testing("GC: -- [type] had initialize() called after qdel() --")
 
 /atom/movable/Bump(var/atom/A, yes)
 	if(src.throwing)
@@ -294,4 +294,3 @@ var/list/accessible_z_levels = list("1" = 5, "3" = 10, "4" = 15, "6" = 60)
 	if(!candidates.len)
 		return null
 	return text2num(pickweight(candidates))
-
