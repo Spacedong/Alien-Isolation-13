@@ -437,8 +437,8 @@
 /obj/structure/window/plasmabasic
 	name = "plasma window"
 	desc = "A borosilicate alloy window. It seems to be quite strong."
-	basestate = "plasmawindow"
-	icon_state = "plasmawindow"
+	basestate = "phoronwindow"
+	icon_state = "phoronwindow"
 	shardtype = /obj/item/weapon/material/shard/plasma
 	glasstype = /obj/item/stack/material/glass/plasmaglass
 	maximal_heat = T0C + 2000
@@ -448,8 +448,8 @@
 /obj/structure/window/plasmareinforced
 	name = "reinforced borosilicate window"
 	desc = "A borosilicate alloy window, with rods supporting it. It seems to be very strong."
-	basestate = "plasmarwindow"
-	icon_state = "plasmarwindow"
+	basestate = "phoronwindow"
+	icon_state = "phoronwindow"
 	shardtype = /obj/item/weapon/material/shard/plasma
 	glasstype = /obj/item/stack/material/glass/plasmarglass
 	reinf = 1
